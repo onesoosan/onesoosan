@@ -198,3 +198,5 @@ def run_daily(config_dir: str = "config", data_dir: str = "data") -> pd.DataFram
 
 
 if __name__ == "__main__":
+    run_daily()
+
