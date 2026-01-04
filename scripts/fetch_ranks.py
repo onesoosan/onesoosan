@@ -21,6 +21,9 @@ NAVER_ENDPOINTS = [
     "https://map.naver.com/v5/api/search",  # 예전 경로(가끔 이게 더 잘 됨)
 ]
 
+DEFAULT_LNG = 128.60154
+DEFAULT_LAT = 35.8662138
+
 # 너무 빠르면 차단되니 천천히
 MIN_SLEEP = 2.5
 MAX_SLEEP = 5.0
@@ -90,11 +93,16 @@ def naver_search(keyword: str, max_results: int = 300) -> List[Dict[str, Any]]:
         params = {
             "caller": "pcweb",
             "query": keyword,
-            "type": "all",
+            "type": "place",
             "page": page,
             "displayCount": display_count,
             "lang": "ko",
-        }
+       
+          # ✅ 위치 기반 랭킹 고정(대구/삼덕 기준)
+    "searchCoord": f"{DEFAULT_LNG};{DEFAULT_LAT}",
+    "x": DEFAULT_LNG,
+    "y": DEFAULT_LAT,
+}
 
         data: Optional[Dict[str, Any]] = None
         last_endpoint_err: Optional[Exception] = None
