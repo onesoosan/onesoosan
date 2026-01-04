@@ -76,7 +76,7 @@ def _get_json_with_retry(session: requests.Session, url: str, params: Dict[str, 
     raise RuntimeError(f"Request failed after retries: {url}") from last_err
 
 
-def naver_search(keyword: str, max_results: int = 120) -> List[Dict[str, Any]]:
+def naver_search(keyword: str, max_results: int = 300) -> List[Dict[str, Any]]:
     """
     네이버 지도 검색 결과(place list)를 여러 페이지로 받아서 합칩니다.
     """
